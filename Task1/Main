@@ -1,0 +1,24 @@
+package HomeWork7.Task1;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class Main {
+
+	public static void main(String[] args) {
+	
+		
+		Ship ship1 = new Ship("Amazon");
+		Ship ship2 = new Ship("Parom");
+		Ship ship3 = new Ship("Tank");
+		
+		
+		ExecutorService docks = Executors.newFixedThreadPool(2);
+		docks.execute(ship1);
+		docks.execute(ship2);
+		docks.execute(ship3);
+		
+	}
+
+}
