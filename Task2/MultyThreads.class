@@ -1,0 +1,51 @@
+package HomeWork7.Task2;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+
+public class MultyThreads  implements Runnable{
+
+	private int begin;
+	private int end;
+	private File oldFile;
+	private File newFile;
+	private int countOfThread;
+	
+	
+	public MultyThreads(File oldFile , File newFile,int begin,int end,int countOfThread) {
+		super();
+		
+		this.begin=begin;
+		this.end=end;
+		this.oldFile=oldFile;
+		this.newFile=newFile;
+		this.countOfThread=countOfThread;
+		
+	}
+	
+
+	@Override
+	public void run() {
+		
+		try(RandomAccessFile fis = new RandomAccessFile(oldFile,"rw");
+			RandomAccessFile fos = new RandomAccessFile(newFile,"rw")){
+			
+			byte[] buffer = new byte[10240000];
+			int length = 0;
+			
+			for (;(length = fis.read(buffer, begin, end))>0;){
+				fos.write(buffer, begin, length);
+				
+			}
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
+	
+	
+}
