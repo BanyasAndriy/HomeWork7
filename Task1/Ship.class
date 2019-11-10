@@ -1,0 +1,40 @@
+package HomeWork7.Task1;
+
+public class Ship implements Runnable {
+
+	private String name;
+	private int box;
+	
+	
+	public Ship(String name) {
+	this.name=name;
+	box=10;
+	}
+	
+
+	public String getName() {
+		return name;
+	}
+	
+	
+	@Override
+	public   void run() {
+		
+		try {
+			while(box>0) {
+			Thread.currentThread().sleep(500);
+			box--;
+			System.out.println("Корабель  " + this.getName() + " вигрузив ящик !\nЗалишилось " + box + " ящиків");
+			if(box==0) {
+			System.out.println("З корабля  " + this.getName() + " вигружено всі ящики!");
+			}
+			}
+			
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+}
